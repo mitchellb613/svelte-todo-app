@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
+  import { push } from "svelte-spa-router";
   import { session } from "../stores";
+  import { supabase } from "../supabaseClient";
 </script>
 
 <div class="min-h-[40px] bg-teal-500 flex flex-row items-center">
@@ -11,9 +13,21 @@
           <h1 class="text-xl">Todo-App</h1>
         </div>
       </a>
-      <button class="bg-gray-300 px-1 py-0.5 rounded hover:bg-gray-500">
-        {$session ? "Sign Out" : "Sign In"}
-      </button>
+      {#if $session}
+        <button
+          class="bg-gray-300 px-1 py-0.5 rounded hover:bg-gray-500"
+          on:click={() => supabase.auth.signOut()}
+        >
+          Sign Out
+        </button>
+      {:else}
+        <button
+          class="bg-gray-300 px-1 py-0.5 rounded hover:bg-gray-500"
+          on:click={() => push("/auth")}
+        >
+          Sign In
+        </button>
+      {/if}
     </div>
   </div>
 </div>

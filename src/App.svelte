@@ -4,6 +4,7 @@
   import { session } from "./stores";
   import Home from "./pages/+home.svelte";
   import Router from "svelte-spa-router";
+  import Auth from "./pages/+auth.svelte";
 
   onMount(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -16,6 +17,7 @@
 
   const routes = {
     "/": Home,
+    "/auth": Auth,
   };
 </script>
 
