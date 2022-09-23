@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
   import { supabase } from "./supabaseClient";
   import { session } from "./stores";
-  import Home from "./pages/+home.svelte";
+  import Home from "./pages/+Home.svelte";
   import Router, { replace } from "svelte-spa-router";
-  import Auth from "./pages/+auth.svelte";
-  import TaskView from "./pages/+taskView.svelte";
+  import Auth from "./pages/+Auth.svelte";
+  import TaskView from "./pages/+TaskView.svelte";
   import { wrap } from "svelte-spa-router/wrap";
 
   onMount(() => {
@@ -34,7 +34,7 @@
   };
 
   const conditionsFailed = () => {
-    replace("/auth");
+    replace("/");
   };
 </script>
 

@@ -12,7 +12,7 @@
     try {
       loading = true;
       let { data: Tasks, error } = await supabase
-        .from("Tasks")
+        .from("tasks")
         .select("*")
         .eq("owner_id", $session.user.id);
       if (error) throw error;
