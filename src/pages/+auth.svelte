@@ -10,7 +10,6 @@
       loading = true;
       const { error } = await supabase.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: "/" },
       });
       if (error) throw error;
       alert("Check your email for login link!");
@@ -33,7 +32,7 @@
     >
     <input
       id="email"
-      class="border-2 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded my-2 px-1"
+      class="border-2 border-gray-600 focus:ring-blue-500 rounded my-2 px-1"
       type="text"
       placeholder="Enter email..."
       bind:value={email}
