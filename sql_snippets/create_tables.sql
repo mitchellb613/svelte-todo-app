@@ -1,26 +1,32 @@
-create table if not exists tasks (
-  id bigserial primary key,
-  owner_id uuid references auth.users on delete cascade not null,
-  title text not null,
-  description text,
-  priority text,
-  due_by timestamptz,
-  is_completed bool default false,
-  created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS tasks (
+    id bigserial PRIMARY KEY,
+    owner_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+    title text NOT NULL,
+    description text,
+    priority text,
+    due_by timestamptz,
+    is_completed bool DEFAULT false,
+    created_at timestamptz DEFAULT NOW()
 );
-alter table tasks enable row level security;
 
-create table if not exists tags (
-  id bigserial primary key,
-  owner_id uuid references auth.users on delete cascade not null,
-  title text not null,
-  created_at timestamptz default now()
-);
-alter table tags enable row level security;
+ALTER TABLE
+    tasks enable ROW LEVEL SECURITY;
 
-create table if not exists tags_to_tasks (
-  id bigserial primary key,
-  tag_id int8 references tags on delete cascade not null,
-  task_id int8 references tasks on delete cascade not null
+CREATE TABLE IF NOT EXISTS tags (
+    id bigserial PRIMARY KEY,
+    owner_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+    title text NOT NULL,
+    created_at timestamptz DEFAULT NOW()
 );
-alter table tags_to_tasks enable row level security;
+
+ALTER TABLE
+    tags enable ROW LEVEL SECURITY;
+
+CREATE TABLE IF NOT EXISTS tags_to_tasks (
+    id bigserial PRIMARY KEY,
+    tag_id int8 REFERENCES tags ON DELETE CASCADE NOT NULL,
+    task_id int8 REFERENCES tasks ON DELETE CASCADE NOT NULL
+);
+
+ALTER TABLE
+    tags_to_tasks enable ROW LEVEL SECURITY;
