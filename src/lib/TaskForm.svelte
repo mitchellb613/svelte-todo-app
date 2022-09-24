@@ -3,12 +3,12 @@
   import MultiSelect, { type Option } from "svelte-multiselect";
   import { session } from "../stores";
   const handleSubmit = async () => {
-    let { data, error } = await supabase.rpc("addtaskwithtags", {
+    let { data, error } = await supabase.rpc("add_task_with_tags", {
       input_description: description,
       input_due_by: dueBy,
       input_owner_id: $session.user.id,
       input_priority: priority,
-      input_tag_ids: [10],
+      // input_tag_ids: [10],
       input_title: title,
     });
   };
