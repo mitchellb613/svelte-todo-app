@@ -7,11 +7,13 @@ create or replace function addTaskWithTags(input_owner_id uuid, input_title text
     values(input_owner_id, input_title, input_description, input_priority, input_due_by)
     returning id into new_task_id;
 
-    foreach input_tag_id in array input_tag_ids
-    loop
-      insert into tags_to_tasks(task_id, tag_id)
-      values(new_task_id, input_tag_id);
-    end loop;
+    if input_tag_ids is not null then
+      foreach input_tag_id in array input_tag_ids
+      loop
+        insert into tags_to_tasks(task_id, tag_id)
+        values(new_task_id, input_tag_id);
+      end loop;
+    end if;
 
     return query select * from tasks
     where tasks.id = new_task_id;
