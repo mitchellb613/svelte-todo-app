@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getTasksWithTags (input_owner_id uuid)
+CREATE OR REPLACE FUNCTION get_tasks_with_tags (input_owner_id uuid)
     RETURNS TABLE (
         task_id int8,
         title text,

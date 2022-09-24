@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION addTaskWithTags (input_owner_id uuid, input_title text, input_description text DEFAULT NULL, input_priority text DEFAULT NULL, input_due_by timestamp DEFAULT NULL, input_tag_ids int[] DEFAULT NULL)
+CREATE OR REPLACE FUNCTION add_task_with_tags (input_owner_id uuid, input_title text, input_description text DEFAULT NULL, input_priority text DEFAULT NULL, input_due_by timestamp DEFAULT NULL, input_tag_ids int[] DEFAULT NULL)
     RETURNS SETOF tasks
     AS $$
 DECLARE
